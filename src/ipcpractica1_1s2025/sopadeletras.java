@@ -208,7 +208,7 @@ public class sopadeletras {
             }
 
             System.out.println("Palabras encontradas: " + palabrasEncontradas);
-            System.out.println("Palabras pendientes: " + (palabras.size() - palabrasEncontradas));
+            System.out.println("Palabras pendientes: " + (palabras.size()));
             System.out.println("Puntos: " + puntos);
             tablero.mostrarTablero();
         }
