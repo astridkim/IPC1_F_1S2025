@@ -10,7 +10,7 @@ package ipcpractica1_1s2025;
  */
 import java.util.Scanner;
 public class IPCPRACTICA1_1S2025 {
-
+ // voy a explicar un poco en cada clase el codigo son 5 clases
     private static String nombreCompleto;
     private static String carnet;
     private static String seccion;
@@ -19,11 +19,11 @@ public class IPCPRACTICA1_1S2025 {
         
         Scanner scanner = new Scanner(System.in);
         sopadeletras juego = new sopadeletras();
-        
+        // aqui hice el primer swtich para desplazar como la primera lista de opciones 
         int opcion; 
         do {
-            System.out.println("\n--- Sopa de Letras ---");
-            System.out.println("1. Nueva Partida");
+            System.out.println("\n--- Sopita de Letras ---");
+           System.out.println("1. Nueva Partida");
             System.out.println("2. Historial de Partidas");
             System.out.println("3. Mostrar Puntuaciones Más Altas");
             System.out.println("4. Mostrar Información del Estudiante");
@@ -33,7 +33,7 @@ public class IPCPRACTICA1_1S2025 {
 
             switch (opcion) {
                 case 1:
-                    juego.iniciarNuevaPartida();
+                    juego.iniciarNuevaPartida();// aqui estoy llamddo a el metodo, que creen en la clase sopadeletras.java
                     nombreCompleto = juego.getNombreCompleto();
                     carnet = juego.getCarnet();
                     seccion = juego.getSeccion();
