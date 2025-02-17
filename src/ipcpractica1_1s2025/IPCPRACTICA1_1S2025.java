@@ -22,7 +22,7 @@ public class IPCPRACTICA1_1S2025 {
         // aqui hice el primer swtich para desplazar como la primera lista de opciones 
         int opcion; 
         do {
-            System.out.println("\n--- Sopita de Letras ---");
+            System.out.println("\n--- 🍜🍜Sopita de Letras🍜🍜 ---");
            System.out.println("1. Nueva Partida");
             System.out.println("2. Historial de Partidas");
             System.out.println("3. Mostrar Puntuaciones Más Altas");
