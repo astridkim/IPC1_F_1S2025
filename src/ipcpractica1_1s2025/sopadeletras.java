@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class sopadeletras {
-
+ // 
     private Scanner scanner;
     private ArrayList<String> palabras;
     private int tamañoTablero;
@@ -30,7 +30,7 @@ public class sopadeletras {
         this.scanner = new Scanner(System.in);
         this.historial = new HistorialPuntuaciones(); // Inicializa el historial
     }
-
+    
     public void iniciarNuevaPartida() {
         
         System.out.print("Ingrese su nombre completo: ");
@@ -40,8 +40,8 @@ public class sopadeletras {
         System.out.print("Ingrese su sección: ");
         seccion = scanner.nextLine();
 
-        System.out.println("\nSeleccione una sección A-G:");
-        System.out.println("A. El tablero será de  (17x17)");
+        System.out.println("\nSeleccione una sección de la letra A a la G:");
+        System.out.println("A. El tablero será de (17x17)");
         System.out.println("B. El tablero será de  (15x15)");
         System.out.println("C. El tablero será de (20x20)");
         System.out.println("D. El tablero será de (25x25)");
@@ -60,13 +60,13 @@ public class sopadeletras {
             case 'F': tamañoTablero = 18; minLongitud = 4; maxLongitud = 12; break;
             case 'G': tamañoTablero = 16; minLongitud = 6; maxLongitud = 10; break;
             default:
-                System.out.println("❌ Sección inválida. Seleccionando A por defecto.");
+                System.out.println("Incorrecto. Seleccionando A por defecto.");
                 tamañoTablero = 17; minLongitud = 4; maxLongitud = 10;
                 break;
         }
 
-        System.out.println("\n🎮 Bienvenido, " + nombreCompleto + "!");
-        System.out.println("📌 Has seleccionado la sección " + seccionTablero +
+        System.out.println("\n Bienvenido, " + nombreCompleto + "!");
+        System.out.println(" Has seleccionado la sección " + seccionTablero +
                 ". Tamaño del tablero: " + tamañoTablero + "x" + tamañoTablero +
                 ". Palabras entre " + minLongitud + " y " + maxLongitud + " caracteres.");
 
