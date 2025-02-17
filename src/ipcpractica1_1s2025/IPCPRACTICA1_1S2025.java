@@ -42,7 +42,7 @@ public class IPCPRACTICA1_1S2025 {
                     juego.mostrarHistorial();
                     break;
                 case 3:
-                    juego.mostrarPuntuacionesAltas();
+                    System.out.println("puntuaciones mas altas");
                     break;
                 case 4:
                     mostrarInformacionEstudiante();
