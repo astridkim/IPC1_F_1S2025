@@ -55,7 +55,7 @@ public class Tablero {
             if (espacioDisponible) {
                 // Insertar palabra
                 for (int i = 0; i < palabra.length(); i++) {
-                    if (horizontal) {
+                  if (horizontal) {
                         matriz[fila][columna + i] = palabra.charAt(i);
                     } else {
                         matriz[fila + i][columna] = palabra.charAt(i);
@@ -114,7 +114,7 @@ public class Tablero {
         return true;
     }
 
-    // Imprime el tablero con separadores "|"
+    // aqui solo usamos los separadores |
     public void mostrarTablero() {
         for (int i = 0; i < tamaño; i++) {
             System.out.print("| ");
