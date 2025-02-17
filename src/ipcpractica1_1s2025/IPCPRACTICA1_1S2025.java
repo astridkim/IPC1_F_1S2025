@@ -57,7 +57,7 @@ public class IPCPRACTICA1_1S2025 {
         
         scanner.close();
     }
-
+// AQUI VAMOS A pedir la info del estudante como lo dice el metodo donde en la clase sopa de letras lo pedimos
     private static void mostrarInformacionEstudiante() {
         System.out.println("Nombre Completo: " + nombreCompleto);
         System.out.println("Carnet: " + carnet);
