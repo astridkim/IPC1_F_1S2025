@@ -177,16 +177,13 @@ public class sopadeletras {
         tablero.mostrarTablero();
 
         int palabrasEncontradas = 0;
-        int puntos = 25; // Puntos iniciales que segun la practica nos esta pidiendo
-
-
+       
         if (palabrasEncontradas == numPalabras) {
             System.out.println(" ¡Felicidades inge, usted ha encontrado todas las palabras!");
         } else {
             System.out.println(" Has perdido todas tus oportunidades. Fin del juego.");
         }
 
-        historial.agregarPuntuacion(nombreJugador, puntos);
     }
     
 
