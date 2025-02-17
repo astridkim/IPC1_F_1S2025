@@ -20,22 +20,10 @@ public class HistorialPuntuaciones {
     public void agregarPuntuacion(String jugador, int puntaje) {
         if (numPuntuaciones < puntuaciones.length) {
             puntuaciones[numPuntuaciones++] = new Puntuaciones(jugador, puntaje);
-            ordenarPuntuaciones();
+        
             System.out.println(" Puntuación agregada: " + jugador + " - " + puntaje + " puntos.");
         } else {
             System.out.println("No se pueden agregar más puntuaciones.");
-        }
-    }
-
-    private void ordenarPuntuaciones() {
-        for (int i = 0; i < numPuntuaciones - 1; i++) {
-            for (int j = 0; j < numPuntuaciones - 1 - i; j++) {
-                if (puntuaciones[j].getPuntaje() < puntuaciones[j + 1].getPuntaje()) {
-                    Puntuaciones temp = puntuaciones[j];
-                    puntuaciones[j] = puntuaciones[j + 1];
-                    puntuaciones[j + 1] = temp;
-                }
-            }
         }
     }
 
