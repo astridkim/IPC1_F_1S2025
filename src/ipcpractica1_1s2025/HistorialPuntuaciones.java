@@ -8,47 +8,59 @@ package ipcpractica1_1s2025;
  *
  * @author astridkim
  */
-import java.util.Collections;
-import java.util.ArrayList;
-import java.util.Comparator;
-
 public class HistorialPuntuaciones {
-    private ArrayList<Puntuaciones> puntuaciones;
+    private Puntuaciones[] puntuaciones;
+    private int numPuntuaciones;
 
     public HistorialPuntuaciones() {
-        this.puntuaciones = new ArrayList<>();
+        this.puntuaciones = new Puntuaciones[100]; 
+        this.numPuntuaciones = 0;
     }
 
     public void agregarPuntuacion(String jugador, int puntaje) {
-        puntuaciones.add(new Puntuaciones(jugador, puntaje));
-        Collections.sort(puntuaciones, Comparator.comparingInt(Puntuaciones::getPuntaje).reversed()); 
-        System.out.println("🏆 Puntuación agregada: " + jugador + " - " + puntaje + " puntos.");
+        if (numPuntuaciones < puntuaciones.length) {
+            puntuaciones[numPuntuaciones++] = new Puntuaciones(jugador, puntaje);
+            ordenarPuntuaciones();
+            System.out.println(" Puntuación agregada: " + jugador + " - " + puntaje + " puntos.");
+        } else {
+            System.out.println("No se pueden agregar más puntuaciones.");
+        }
+    }
+
+    private void ordenarPuntuaciones() {
+        for (int i = 0; i < numPuntuaciones - 1; i++) {
+            for (int j = 0; j < numPuntuaciones - 1 - i; j++) {
+                if (puntuaciones[j].getPuntaje() < puntuaciones[j + 1].getPuntaje()) {
+                    Puntuaciones temp = puntuaciones[j];
+                    puntuaciones[j] = puntuaciones[j + 1];
+                    puntuaciones[j + 1] = temp;
+                }
+            }
+        }
     }
 
     public void mostrarHistorial() {
-        if (puntuaciones.isEmpty()) {
-            System.out.println(" No hay puntuaciones registradas.");
+        if (numPuntuaciones == 0) {
+            System.out.println("No hay puntuaciones registradas.");
             return;
         }
 
         System.out.println("\n Historial de Puntuaciones:");
-        for (Puntuaciones p : puntuaciones) {
-            System.out.println(p.getJugador() + ": " + p.getPuntaje() + " puntos");
+        for (int i = 0; i < numPuntuaciones; i++) {
+            System.out.println(puntuaciones[i].getJugador() + ": " + puntuaciones[i].getPuntaje() + " puntos");
         }
     }
 
     public void mostrarPuntuacionesAltas() {
-        if (puntuaciones.isEmpty()) {
+        if (numPuntuaciones == 0) {
             System.out.println(" No hay puntuaciones registradas.");
             return;
         }
 
         System.out.println("\n Puntuaciones Más Altas:");
-        int limite = Math.min(3, puntuaciones.size());
+        int limite = Math.min(3, numPuntuaciones);
         for (int i = 0; i < limite; i++) {
-            Puntuaciones p = puntuaciones.get(i);
-            System.out.println((i + 1) + ". " + p.getJugador() + ": " + p.getPuntaje() + " puntos");
+            System.out.println((i + 1) + ". " + puntuaciones[i].getJugador() + ": " + puntuaciones[i].getPuntaje() + " puntos");
         }
     }
 }
-
