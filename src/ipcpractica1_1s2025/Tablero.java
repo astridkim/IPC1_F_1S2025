@@ -21,7 +21,7 @@ public class Tablero {
         inicializarTablero();
     }
 
-    // Inicializa el tablero con espacios vacíos
+   
     private void inicializarTablero() {
         for (int i = 0; i < tamaño; i++) {
             for (int j = 0; j < tamaño; j++) {
@@ -33,7 +33,7 @@ public class Tablero {
     // Coloca una palabra en una posición aleatoria
     public boolean colocarPalabra(String palabra) {
         int intentos = 0;
-        while (intentos < 25) { // Intentar 100 veces antes de rendirse
+        while (intentos < 25) { 
             boolean horizontal = random.nextBoolean();
             int fila, columna;
 
@@ -78,40 +78,6 @@ public class Tablero {
                 }
             }
         }
-    }
-
-    // Sustituye una palabra encontrada con '#'
-    public void sustituirPalabra(String palabra) {
-        for (int i = 0; i < tamaño; i++) {
-            for (int j = 0; j < tamaño; j++) {
-                if (buscarYReemplazar(i, j, palabra, true) || buscarYReemplazar(i, j, palabra, false)) {
-                    return;
-                }
-            }
-        }
-    }
-
-    // Busca y reemplaza una palabra en la matriz
-    private boolean buscarYReemplazar(int fila, int columna, String palabra, boolean horizontal) {
-        int longitud = palabra.length();
-        if (horizontal) {
-            if (columna + longitud > tamaño) return false;
-            for (int i = 0; i < longitud; i++) {
-                if (matriz[fila][columna + i] != palabra.charAt(i)) return false;
-            }
-            for (int i = 0; i < longitud; i++) {
-                matriz[fila][columna + i] = '#';
-            }
-        } else {
-            if (fila + longitud > tamaño) return false;
-            for (int i = 0; i < longitud; i++) {
-                if (matriz[fila + i][columna] != palabra.charAt(i)) return false;
-            }
-            for (int i = 0; i < longitud; i++) {
-                matriz[fila + i][columna] = '#';
-            }
-        }
-        return true;
     }
 
     // aqui solo usamos los separadores |
