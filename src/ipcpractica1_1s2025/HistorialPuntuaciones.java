@@ -16,39 +16,5 @@ public class HistorialPuntuaciones {
         this.puntuaciones = new Puntuaciones[100]; 
         this.numPuntuaciones = 0;
     }
-
-    public void agregarPuntuacion(String jugador, int puntaje) {
-        if (numPuntuaciones < puntuaciones.length) {
-            puntuaciones[numPuntuaciones++] = new Puntuaciones(jugador, puntaje);
-        
-            System.out.println(" Puntuación agregada: " + jugador + " - " + puntaje + " puntos.");
-        } else {
-            System.out.println("No se pueden agregar más puntuaciones.");
-        }
-    }
-
-    public void mostrarHistorial() {
-        if (numPuntuaciones == 0) {
-            System.out.println("No hay puntuaciones registradas.");
-            return;
-        }
-
-        System.out.println("\n Historial de Puntuaciones:");
-        for (int i = 0; i < numPuntuaciones; i++) {
-            System.out.println(puntuaciones[i].getJugador() + ": " + puntuaciones[i].getPuntaje() + " puntos");
-        }
-    }
-
-    public void mostrarPuntuacionesAltas() {
-        if (numPuntuaciones == 0) {
-            System.out.println(" No hay puntuaciones registradas.");
-            return;
-        }
-
-        System.out.println("\n Puntuaciones Más Altas:");
-        int limite = Math.min(3, numPuntuaciones);
-        for (int i = 0; i < limite; i++) {
-            System.out.println((i + 1) + ". " + puntuaciones[i].getJugador() + ": " + puntuaciones[i].getPuntaje() + " puntos");
-        }
-    }
 }
+   
