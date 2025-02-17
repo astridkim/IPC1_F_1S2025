@@ -32,7 +32,7 @@ public class sopadeletras {
     }
 
     public void iniciarNuevaPartida() {
-        // Pedir nombre completo, carnet y sección
+        
         System.out.print("Ingrese su nombre completo: ");
         nombreCompleto = scanner.nextLine();
         System.out.print("Ingrese su carnet: ");
@@ -70,7 +70,7 @@ public class sopadeletras {
                 ". Tamaño del tablero: " + tamañoTablero + "x" + tamañoTablero +
                 ". Palabras entre " + minLongitud + " y " + maxLongitud + " caracteres.");
 
-        // Crear el tablero con el tamaño correcto
+        
         tablero = new Tablero(tamañoTablero);
         tablero.mostrarTablero();
 
@@ -78,7 +78,7 @@ public class sopadeletras {
         int opcionNuevaPartida;
         do {
             System.out.println("\n--- Menú Nueva Partida ---");
-            System.out.println("1. Menú Palabras");
+            System.out.println("1. Insertar, modificar o mostrar palabras");
             System.out.println("2. Jugar");
             System.out.println("3. Regresar al Menú Principal");
             System.out.print("Seleccione una opción: ");
@@ -145,12 +145,12 @@ public class sopadeletras {
                     palabras.add(palabra);
                     palabraValida = true;
                 } else {
-                    System.out.println("❌ Error: La palabra debe tener entre " + minLongitud + " y " + maxLongitud + " caracteres.");
+                    System.out.println(" Error: La palabra debe tener entre " + minLongitud + " y " + maxLongitud + " caracteres.");
                 }
             }
         }
 
-        System.out.println("\n✅ Palabras ingresadas correctamente.");
+        System.out.println("\nPalabras ingresadas correctamente.");
     }
 
     private void modificarPalabra() {
@@ -173,7 +173,7 @@ public class sopadeletras {
 
     private void jugar(String nombreJugador) {
         if (palabras.isEmpty()) {
-            System.out.println("❌ No hay palabras para jugar. Agregue palabras primero.");
+            System.out.println("No hay palabras para jugar. Agregue palabras primero.");
             return;
         }
 
@@ -196,7 +196,7 @@ public class sopadeletras {
             String palabraIngresada = scanner.next();
 
             if (palabras.contains(palabraIngresada)) {
-                System.out.println("✅ ¡Palabra encontrada!");
+                System.out.println(" Palabra encontrada");
                 palabrasEncontradas++;
                 palabras.remove(palabraIngresada);
                 tablero.sustituirPalabra(palabraIngresada);
@@ -204,7 +204,7 @@ public class sopadeletras {
             } else {
                 oportunidades--;
                 puntos -= 5; // Restar puntos por error
-                System.out.println("❌ Palabra no encontrada. Oportunidades restantes: " + oportunidades);
+                System.out.println(" Palabra no encontrada. Oportunidades restantes: " + oportunidades);
             }
 
             System.out.println("Palabras encontradas: " + palabrasEncontradas);
@@ -214,9 +214,9 @@ public class sopadeletras {
         }
 
         if (palabrasEncontradas == palabras.size()) {
-            System.out.println("🎉 ¡Felicidades, has encontrado todas las palabras!");
+            System.out.println(" ¡Felicidades inge, usted ha encontrado todas las palabras!");
         } else {
-            System.out.println("😢 Has perdido todas tus oportunidades. Fin del juego.");
+            System.out.println(" Has perdido todas tus oportunidades. Fin del juego.");
         }
 
         historial.agregarPuntuacion(nombreJugador, puntos);
