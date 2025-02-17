@@ -152,21 +152,6 @@ public class sopadeletras {
         System.out.println("\nPalabras ingresadas correctamente.");
     }
 
-    private void modificarPalabra() {
-        System.out.print("Ingrese la palabra a modificar: ");
-        String palabraAntigua = scanner.next();
-        System.out.print("Ingrese la nueva palabra: ");
-        String palabraNueva = scanner.next();
-
-        for (int i = 0; i < numPalabras; i++) {
-            if (palabras[i].equals(palabraAntigua)) {
-                palabras[i] = palabraNueva;
-                System.out.println("Palabra modificada con éxito.");
-                return;
-            }
-        }
-        System.out.println("La palabra no existe.");
-    }
 
     private void mostrarPalabras() {
         System.out.print("Palabras en el banco: ");
@@ -191,38 +176,9 @@ public class sopadeletras {
         System.out.println("\n🔠 Tablero con letras aleatorias:");
         tablero.mostrarTablero();
 
-        int oportunidades = 4;
         int palabrasEncontradas = 0;
         int puntos = 25; // Puntos iniciales que segun la practica nos esta pidiendo
 
-        while (oportunidades > 0 && palabrasEncontradas < numPalabras) {
-            System.out.print("\nIngrese una palabra: ");
-            String palabraIngresada = scanner.next();
-
-            boolean encontrada = false;
-            for (int i = 0; i < numPalabras; i++) {
-                if (palabras[i] != null && palabras[i].equals(palabraIngresada)) {
-                    System.out.println(" Palabra encontrada");
-                    palabrasEncontradas++;
-                    palabras[i] = null; 
-                    tablero.sustituirPalabra(palabraIngresada);
-                    puntos += palabraIngresada.length(); // Sumar puntos basados en la longitud de la palabra entre mas larga mas puntos
-                    encontrada = true;
-                    break;
-                }
-            }
-
-            if (!encontrada) {
-                oportunidades--;
-                puntos -= 5; // Restar puntos por error que es lo que nos piden en esta practica 
-                System.out.println(" Palabra no encontrada. Oportunidades restantes: " + oportunidades);
-            }
-
-            System.out.println("Palabras encontradas: " + palabrasEncontradas);
-            System.out.println("Palabras pendientes: " + (numPalabras - palabrasEncontradas));
-            System.out.println("Puntos: " + puntos);
-            tablero.mostrarTablero();
-        }
 
         if (palabrasEncontradas == numPalabras) {
             System.out.println(" ¡Felicidades inge, usted ha encontrado todas las palabras!");
