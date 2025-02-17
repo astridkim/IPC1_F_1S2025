@@ -9,13 +9,12 @@ package ipcpractica1_1s2025;
  * @author astridkim
  * 
  */
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class sopadeletras {
- // 
+//aqui vamos a declarar las variables que vamos a usar en ests clase
     private Scanner scanner;
-    private ArrayList<String> palabras;
+    private String[] palabras;
     private int tamañoTablero;
     private int minLongitud;
     private int maxLongitud;
@@ -24,18 +23,19 @@ public class sopadeletras {
     private String nombreCompleto;
     private String carnet;
     private String seccion;
+    private int numPalabras;
 
     public sopadeletras() {
-        this.palabras = new ArrayList<>();
+        this.palabras = new String[100]; 
+        this.numPalabras = 0;
         this.scanner = new Scanner(System.in);
-        this.historial = new HistorialPuntuaciones(); // Inicializa el historial
+        this.historial = new HistorialPuntuaciones(); 
     }
-    
+
     public void iniciarNuevaPartida() {
-        
         System.out.print("Ingrese su nombre completo: ");
         nombreCompleto = scanner.nextLine();
-        System.out.print("Ingrese su carnet: ");
+        System.out.print("Ingrese su carnet: "); //aqui nos pide el nombre carnet y seccion que en la otra clase de IPCPRACTICA usamos 
         carnet = scanner.nextLine();
         System.out.print("Ingrese su sección: ");
         seccion = scanner.nextLine();
@@ -44,7 +44,7 @@ public class sopadeletras {
         System.out.println("A. El tablero será de (17x17)");
         System.out.println("B. El tablero será de  (15x15)");
         System.out.println("C. El tablero será de (20x20)");
-        System.out.println("D. El tablero será de (25x25)");
+        System.out.println("D. El tablero será de (25x25)");// aqui solo pedimos que letra queremos o sea que longitud segun la tabla
         System.out.println("E. El tablero será de  (14x14)");
         System.out.println("F. El tablero será de (18x18)");
         System.out.println("G. El tablero será de (16x16)");
@@ -65,16 +65,15 @@ public class sopadeletras {
                 break;
         }
 
-        System.out.println("\n Bienvenido, " + nombreCompleto + "!");
+        System.out.println("\n Bienvenido 🫶🏻🫶, " + nombreCompleto + "!");
         System.out.println(" Has seleccionado la sección " + seccionTablero +
                 ". Tamaño del tablero: " + tamañoTablero + "x" + tamañoTablero +
                 ". Palabras entre " + minLongitud + " y " + maxLongitud + " caracteres.");
-
-        
+//  aqui solo  le estamos dando a conocer al usuario que ha sido su eleccion el tamaño de su tabla
         tablero = new Tablero(tamañoTablero);
         tablero.mostrarTablero();
 
-        // Menú de Nueva Partida
+        //esta es la segunda lista que nos aparece despues de la primera en IPCPRACTICA
         int opcionNuevaPartida;
         do {
             System.out.println("\n--- Menú Nueva Partida ---");
@@ -105,9 +104,9 @@ public class sopadeletras {
         do {
             System.out.println("\n--- Menú Palabras ---");
             System.out.println("1. Insertar Palabras");
-            System.out.println("2. Modificar");
+            System.out.println("2. Modificar");// esta es como al tercera lista de opciones que nos va a aparecer
             System.out.println("3. Mostrar Palabras");
-            System.out.println("4. Salir");
+            System.out.println("4. Salir ");
             System.out.print("Seleccione una opción: ");
             subOpcion = scanner.nextInt();
 
@@ -142,7 +141,7 @@ public class sopadeletras {
                 String palabra = scanner.nextLine();
 
                 if (palabra.length() >= minLongitud && palabra.length() <= maxLongitud) {
-                    palabras.add(palabra);
+                    palabras[numPalabras++] = palabra;
                     palabraValida = true;
                 } else {
                     System.out.println(" Error: La palabra debe tener entre " + minLongitud + " y " + maxLongitud + " caracteres.");
@@ -159,61 +158,73 @@ public class sopadeletras {
         System.out.print("Ingrese la nueva palabra: ");
         String palabraNueva = scanner.next();
 
-        if (palabras.contains(palabraAntigua)) {
-            palabras.set(palabras.indexOf(palabraAntigua), palabraNueva);
-            System.out.println("Palabra modificada con éxito.");
-        } else {
-            System.out.println("La palabra no existe.");
+        for (int i = 0; i < numPalabras; i++) {
+            if (palabras[i].equals(palabraAntigua)) {
+                palabras[i] = palabraNueva;
+                System.out.println("Palabra modificada con éxito.");
+                return;
+            }
         }
+        System.out.println("La palabra no existe.");
     }
 
     private void mostrarPalabras() {
-        System.out.println("Palabras en el banco: " + palabras);
+        System.out.print("Palabras en el banco: ");
+        for (int i = 0; i < numPalabras; i++) {
+            System.out.print(palabras[i] + " ");
+        }
+        System.out.println();
     }
 
     private void jugar(String nombreJugador) {
-        if (palabras.isEmpty()) {
+        if (numPalabras == 0) {
             System.out.println("No hay palabras para jugar. Agregue palabras primero.");
             return;
         }
 
-        // Colocar las palabras en el tablero
-        for (String palabra : palabras) {
-            tablero.colocarPalabra(palabra);
+        for (int i = 0; i < numPalabras; i++) {
+            tablero.colocarPalabra(palabras[i]);
         }
 
-        // Llenar los espacios vacíos con letras aleatorias
+        // solo vamos a llenar los espacios vacíos con letras aleatorias
         tablero.llenarEspaciosVacios();
         System.out.println("\n🔠 Tablero con letras aleatorias:");
         tablero.mostrarTablero();
 
         int oportunidades = 4;
         int palabrasEncontradas = 0;
-        int puntos = 25; // Puntos iniciales
+        int puntos = 25; // Puntos iniciales que segun la practica nos esta pidiendo
 
-        while (oportunidades > 0 && palabrasEncontradas < palabras.size()) {
+        while (oportunidades > 0 && palabrasEncontradas < numPalabras) {
             System.out.print("\nIngrese una palabra: ");
             String palabraIngresada = scanner.next();
 
-            if (palabras.contains(palabraIngresada)) {
-                System.out.println(" Palabra encontrada");
-                palabrasEncontradas++;
-                palabras.remove(palabraIngresada);
-                tablero.sustituirPalabra(palabraIngresada);
-                puntos += palabraIngresada.length(); // Sumar puntos basados en la longitud de la palabra
-            } else {
+            boolean encontrada = false;
+            for (int i = 0; i < numPalabras; i++) {
+                if (palabras[i] != null && palabras[i].equals(palabraIngresada)) {
+                    System.out.println(" Palabra encontrada");
+                    palabrasEncontradas++;
+                    palabras[i] = null; 
+                    tablero.sustituirPalabra(palabraIngresada);
+                    puntos += palabraIngresada.length(); // Sumar puntos basados en la longitud de la palabra entre mas larga mas puntos
+                    encontrada = true;
+                    break;
+                }
+            }
+
+            if (!encontrada) {
                 oportunidades--;
-                puntos -= 5; // Restar puntos por error
+                puntos -= 5; // Restar puntos por error que es lo que nos piden en esta practica 
                 System.out.println(" Palabra no encontrada. Oportunidades restantes: " + oportunidades);
             }
 
             System.out.println("Palabras encontradas: " + palabrasEncontradas);
-            System.out.println("Palabras pendientes: " + (palabras.size()));
+            System.out.println("Palabras pendientes: " + (numPalabras - palabrasEncontradas));
             System.out.println("Puntos: " + puntos);
             tablero.mostrarTablero();
         }
 
-        if (palabrasEncontradas == palabras.size()) {
+        if (palabrasEncontradas == numPalabras) {
             System.out.println(" ¡Felicidades inge, usted ha encontrado todas las palabras!");
         } else {
             System.out.println(" Has perdido todas tus oportunidades. Fin del juego.");
@@ -230,10 +241,10 @@ public class sopadeletras {
         historial.mostrarPuntuacionesAltas();
     }
 
-    // Métodos para obtener la información del estudiante
+
     public String getNombreCompleto() {
         return nombreCompleto;
-    }
+    }// aqui en estos 3 metodos vamos a pedir el nombre carnet y seccion 
 
     public String getCarnet() {
         return carnet;
