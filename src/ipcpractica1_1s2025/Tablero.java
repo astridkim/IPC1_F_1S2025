@@ -25,7 +25,7 @@ public class Tablero {
     private void inicializarTablero() {
         for (int i = 0; i < tamaño; i++) {
             for (int j = 0; j < tamaño; j++) {
-                matriz[i][j] = ' '; // Inicialmente vacío
+                matriz[i][j] = ' '; // Inicialmente vacío porque necesitmos que el estudiante vea el tamaño de el tablero
             }
         }
     }
@@ -33,7 +33,7 @@ public class Tablero {
     // Coloca una palabra en una posición aleatoria
     public boolean colocarPalabra(String palabra) {
         int intentos = 0;
-        while (intentos < 100) { // Intentar 100 veces antes de rendirse
+        while (intentos < 25) { // Intentar 100 veces antes de rendirse
             boolean horizontal = random.nextBoolean();
             int fila, columna;
 
@@ -69,7 +69,7 @@ public class Tablero {
         return false; // No se pudo colocar la palabra
     }
 
-    // Llena los espacios vacíos con letras aleatorias
+    // Llena los espacios vacíos con letras aleatorias, ya que nosotros tenemos las letras de nuestras palabras asi que se agregan letras faltantes
     public void llenarEspaciosVacios() {
         for (int i = 0; i < tamaño; i++) {
             for (int j = 0; j < tamaño; j++) {
