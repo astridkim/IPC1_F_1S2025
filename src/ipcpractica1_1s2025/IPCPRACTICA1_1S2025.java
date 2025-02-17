@@ -39,7 +39,7 @@ public class IPCPRACTICA1_1S2025 {
                     seccion = juego.getSeccion();
                     break;
                 case 2:
-                    juego.mostrarHistorial();
+                    System.out.println("mostrar historial");
                     break;
                 case 3:
                     System.out.println("puntuaciones mas altas");
