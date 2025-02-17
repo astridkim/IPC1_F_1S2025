@@ -115,7 +115,7 @@ public class sopadeletras {
                     insertarPalabras();
                     return; // Volver al Menú Nueva Partida después de insertar palabras
                 case 2:
-                    modificarPalabra();
+                 System.out.println("modificar palabra");
                     break;
                 case 3:
                     mostrarPalabras();
@@ -188,15 +188,7 @@ public class sopadeletras {
 
         historial.agregarPuntuacion(nombreJugador, puntos);
     }
-
-    public void mostrarHistorial() {
-        historial.mostrarHistorial();
-    }
-
-    public void mostrarPuntuacionesAltas() {
-        historial.mostrarPuntuacionesAltas();
-    }
-
+    
 
     public String getNombreCompleto() {
         return nombreCompleto;
